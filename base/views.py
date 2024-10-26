@@ -6,15 +6,22 @@ import time
 import json
 from .models import RoomMember
 from django.views.decorators.csrf import csrf_exempt
-
+from django.views import View
 from django.urls import reverse_lazy
 from django.contrib.auth.views import LoginView
 from django.contrib.auth.decorators import login_required
 from django.views.generic.edit import FormView
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import login
+from django.contrib.auth.views import LogoutView
 
 
+class ChatRoomView(View):
+    def get(self, request, room_name):
+        return render(request, 'base/chat_room.html', {
+            'room_name': room_name
+        })
+    
 # View to handle user login with a custom template and redirection for authenticated users.
 class CustomLoginView(LoginView):
      # Specify the template to be used for the login page

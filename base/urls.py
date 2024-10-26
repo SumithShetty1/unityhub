@@ -13,3 +13,7 @@ urlpatterns = [
     path('get_member/',views.getMember),
     path('delete_member/',views.deleteMember),
 ]
+
+#websocket_urlpatterns = [
+#    path('ws/chat/<str:room-name>/', consumers.ChatConsumer.as_asgi()),
+#]
