@@ -152,3 +152,6 @@ def deleteMember(request):
     
     # Return a confirmation message as a JSON response.
     return JsonResponse('Member was deleted', safe=False)
+
+def chat(request):
+    return render(request, 'base/chat_room.html')

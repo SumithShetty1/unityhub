@@ -1,0 +1,13 @@
+{% extends 'base/main.html' %}
+{% load static %}
+
+{% block content %}
+
+<div id="chat-log"></div>
+    <input id="chat-message-input" type="text" size="100">
+    <button id="chat-message-submit">Send</button>
+<div id="room-name" data-room-name="{{ room_name }}"></div>
+
+<script src="{% static 'js/chat.js' %}"></script> <!-- Link to your external JavaScript file -->
+
+{% endblock content %}
