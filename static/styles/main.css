@@ -297,3 +297,46 @@ body::before {
 #leave-btn {
     background-color: rgb(255, 80, 80, 1);
 }
+
+/* -----------------chatbox Styling------------------*/
+.chat-container {
+    position: absolute;
+    right: 20px; /* Adjust as needed */
+    bottom: 20px; /* Adjust as needed */
+    width: 300px; /* Set width for the chat box */
+    max-height: 400px; /* Limit the height */
+    border: 1px solid rgba(198, 202, 219, 1);
+    background-color: rgba(255, 255, 255, 0.9); /* Semi-transparent background */
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    box-shadow: var(--shadow);
+    z-index: 1000; /* Ensure it appears above other elements */
+}
+
+.chat-box {
+    flex: 1; /* Allow chat box to grow */
+    overflow-y: auto; /* Enable scrolling */
+    padding: 10px;
+}
+
+#chat-input {
+    border: 1px solid rgba(198, 202, 219, 1);
+    border-radius: 5px;
+    padding: 10px;
+    font-size: 16px;
+    box-sizing: border-box;
+}
+
+#send-btn {
+    background-color: rgb(75, 93, 172);
+    border: none;
+    color: #fff;
+    cursor: pointer;
+    margin-left: 5px;
+}
+
+#send-btn:hover {
+    background-color: rgb(68, 100, 238);
+}
+

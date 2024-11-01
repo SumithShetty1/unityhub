@@ -94,8 +94,10 @@ def lobby(request):
 # Ensure that the user is logged in before accessing the decorated view
 @login_required(login_url='/login/')
 # View to render the room page.
-def room(request):
-    return render(request, 'base/room.html')
+def room(request, room_name):  # Accept room_name as a parameter
+    return render(request, 'base/room.html', {
+        'room_name': room_name  # Pass the room_name to the template context
+    })
 
 
 # Ensure that the user is logged in before accessing the decorated view

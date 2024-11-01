@@ -10,22 +10,26 @@
     <section id="video-streams"></section>
 
     <section id="controls-wrapper">
-        
         <div class="icon-wrapper">
             <img class="control-icon" id="mic-btn" src="{% static 'images/microphone.svg' %}" />
         </div>
-
         <div class="icon-wrapper">
             <img class="control-icon" id="camera-btn" src="{% static 'images/video.svg' %}" />
         </div>
-
         <div class="icon-wrapper">
             <img class="control-icon" id="leave-btn" src="{% static 'images/leave.svg' %}" />
         </div>
-
     </section>
+
+    <!-- Chat Section -->
+    <div class="chat-container">
+        <div class="chat-box" id="chat-box"></div>
+        <input type="text" id="chat-input" placeholder="Type a message..." />
+        <button id="send-btn">Send</button>
+    </div>
 </main>
 
 <script type="text/javascript" src="{% static 'assets/AgoraRTC_N-4.22.1.js' %}"></script>
 <script type="text/javascript" src="{% static 'js/streams.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/chat.js' %}"></script>  <!-- Link to your chat JS file -->
 {% endblock content %}
