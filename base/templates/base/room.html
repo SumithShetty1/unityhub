@@ -2,30 +2,42 @@
 {% load static %}
 
 {% block content %}
-<main class="room-container">
-    <section id="room-name-wrapper">
-        <p style="color: white;">Room: <span id="room-name"></span></p>
-    </section>
+<main class="room-container" style="display: flex; height: 100vh;">
 
-    <section id="video-streams"></section>
-
-    <section id="controls-wrapper">
+    <!-- Video and Controls Section -->
+    <section style="flex: 1; padding: 20px;">
+        <div id="room-name-wrapper">
+            <p style="color: white;">Room: <span id="room-name"></span></p>
+        </div>
         
-        <div class="icon-wrapper">
-            <img class="control-icon" id="mic-btn" src="{% static 'images/microphone.svg' %}" />
-        </div>
+        <!-- Video Streams Section -->
+        <section id="video-streams"></section>
 
-        <div class="icon-wrapper">
-            <img class="control-icon" id="camera-btn" src="{% static 'images/video.svg' %}" />
-        </div>
-
-        <div class="icon-wrapper">
-            <img class="control-icon" id="leave-btn" src="{% static 'images/leave.svg' %}" />
-        </div>
-
+        <!-- Controls Section -->
+        <section id="controls-wrapper" style="display: flex; justify-content: center; margin-top: 20px;">
+            <div class="icon-wrapper">
+                <img class="control-icon" id="mic-btn" src="{% static 'images/microphone.svg' %}" />
+            </div>
+            <div class="icon-wrapper">
+                <img class="control-icon" id="camera-btn" src="{% static 'images/video.svg' %}" />
+            </div>
+            <div class="icon-wrapper">
+                <img class="control-icon" id="leave-btn" src="{% static 'images/leave.svg' %}" />
+            </div>
+        </section>
     </section>
+
+    <!-- Chat Section on the Right Side -->
+    <section id="chat-container" style="width: 300px; background-color: #2c2f33; color: white; padding: 15px; border-left: 1px solid gray; display: flex; flex-direction: column;">
+        <h3 style="margin-top: 0; text-align: center;">Chat</h3>
+        <div id="chat-log" style="flex: 1; overflow-y: auto; border: 1px solid gray; padding: 10px; margin-bottom: 10px;"></div>
+        <input id="chat-message-input" type="text" placeholder="Type your message..." style="width: 100%; padding: 8px; margin-bottom: 10px; border-radius: 4px; border: 1px solid #ddd;">
+        <button id="chat-message-submit" style="width: 100%; padding: 8px; background-color: #7289da; color: white; border: none; border-radius: 4px;">Send</button>
+    </section>
+
 </main>
 
 <script type="text/javascript" src="{% static 'assets/AgoraRTC_N-4.22.1.js' %}"></script>
 <script type="text/javascript" src="{% static 'js/streams.js' %}"></script>
+<script type="text/javascript" src="{% static 'styles/main.css' %}"></script>
 {% endblock content %}
