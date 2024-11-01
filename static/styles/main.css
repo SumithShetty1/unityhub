@@ -298,6 +298,7 @@ body::before {
     background-color: rgb(255, 80, 80, 1);
 }
 
+<<<<<<< HEAD
 /* -----------------chatbox Styling------------------*/
 .chat-container {
     position: absolute;
@@ -340,3 +341,19 @@ body::before {
     background-color: rgb(68, 100, 238);
 }
 
+=======
+#chat-message-submit {
+    background-color: #4CAF50; /* Green */
+    color: white;
+    padding: 8px 16px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.1s ease;
+}
+
+#chat-message-submit:active {
+    background-color: #45a049; /* Darker green */
+    transform: scale(0.95);
+}
+>>>>>>> 01053f3c86d170232a13f847c404d87ed771c3f0

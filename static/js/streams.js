@@ -193,3 +193,58 @@ window.addEventListener('beforeunload', deleteMember)
 document.getElementById('leave-btn').addEventListener('click', leaveAndRemoveLocalStream)
 document.getElementById('camera-btn').addEventListener('click', toggleCamera)
 document.getElementById('mic-btn').addEventListener('click', toggleMic)
+
+document.addEventListener("DOMContentLoaded", function () {
+    // WebSocket connection setup (make sure this matches your server URL)
+    const roomName = document.getElementById("room-name").textContent.trim();
+    const chatSocket = new WebSocket(
+        `ws://${127.0.0.1:8000}/ws/chat/${roomName}/`
+    );
+
+    // Elements for chat
+    const chatLog = document.getElementById("chat-log");
+    const chatMessageInput = document.getElementById("chat-message-input");
+    const chatMessageSubmit = document.getElementById("chat-message-submit");
+
+    // Function to send messages
+    const sendMessage = () => {
+        try {
+            const message = chatMessageInput.value.trim();
+            if (message) {
+                chatSocket.send(JSON.stringify({
+                    message: message
+                }));
+                chatMessageInput.value = ""; // Clear input field after sending
+            }
+        } catch (error) {
+            console.error("Failed to send message:", error);
+        }
+    };
+
+    // Listen for clicks on the "Send" button
+    chatMessageSubmit.addEventListener("click", sendMessage);
+
+    // Allow sending message by pressing Enter
+    chatMessageInput.addEventListener("keypress", function (e) {
+        if (e.key === "Enter") {
+            sendMessage();
+        }
+    });
+
+    // Display incoming messages in the chat log
+    chatSocket.onmessage = function (e) {
+        const data = JSON.parse(e.data);
+        const messageElement = document.createElement("div");
+        messageElement.textContent = data.message;
+        chatLog.appendChild(messageElement);
+        chatLog.scrollTop = chatLog.scrollHeight; // Auto-scroll to the bottom
+    };
+
+    // Handle WebSocket closure
+    chatSocket.onclose = function (e) {
+        console.error("Chat socket closed unexpectedly.");
+    };
+});
+
+
+
