@@ -152,3 +152,20 @@ def deleteMember(request):
     
     # Return a confirmation message as a JSON response.
     return JsonResponse('Member was deleted', safe=False)
+
+#Adding Room View 
+'''from django.shortcuts import render
+
+def room(request, room_name):
+    return render(request, 'base/room.html', {
+        'room_name': room_name
+    })'''
+from django.shortcuts import render
+
+def lobby(request):
+    return render(request, 'base/lobby.html')  # Ensure this template exists
+
+def room(request, room_name):
+    return render(request, 'base/room.html', {
+        'room_name': room_name  # Ensure room_name is being passed correctly
+    })

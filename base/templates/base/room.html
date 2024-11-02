@@ -2,30 +2,42 @@
 {% load static %}
 
 {% block content %}
-<main class="room-container">
+<main class="room-container" style="display: flex;">
     <section id="room-name-wrapper">
         <p style="color: white;">Room: <span id="room-name"></span></p>
     </section>
 
-    <section id="video-streams"></section>
+    <section id="video-streams" style="flex: 1; margin-right: 20px;"></section>
 
     <section id="controls-wrapper">
-        
         <div class="icon-wrapper">
             <img class="control-icon" id="mic-btn" src="{% static 'images/microphone.svg' %}" />
         </div>
-
         <div class="icon-wrapper">
             <img class="control-icon" id="camera-btn" src="{% static 'images/video.svg' %}" />
         </div>
-
         <div class="icon-wrapper">
             <img class="control-icon" id="leave-btn" src="{% static 'images/leave.svg' %}" />
         </div>
+    </section>
 
+    
+    <!-- Chat Section -->
+    <section id="chat-container" style="width: 300px;background-color: #2c2f33; 
+     color: white; padding: 15px; border-left: 1px solid gray; 
+     display: flex; flex-direction: column;">
+     <h3 style="margin-top: 0; text-align: center;">Chat</h3>
+        <div id="chat-box" class="chat-box" style="flex: 1; overflow-y: auto; border: 1px solid gray; padding: 10px; margin-bottom: 10px;"></div>
+        <input type="text" id="chat-input" placeholder="Type a message..."style="width: 100%; padding: 8px; margin-bottom: 10px; border-radius: 4px; border: 1px solid #ddd;"/>
+        <button id="send-btn" style="width: 100%; padding: 8px; background-color: #72dac2; color: white; border: none; border-radius: 4px;">Send</button>
     </section>
 </main>
 
+<script>
+    const roomName = "{{ room_name|escapejs }}";
+</script>
+
 <script type="text/javascript" src="{% static 'assets/AgoraRTC_N-4.22.1.js' %}"></script>
 <script type="text/javascript" src="{% static 'js/streams.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/chat.js' %}"></script>
 {% endblock content %}
