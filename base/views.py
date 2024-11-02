@@ -1,10 +1,12 @@
 from django.shortcuts import render, redirect
+#from django.http import HttpResponse, JsonResponse
 from django.http import JsonResponse
 from agora_token_builder import RtcTokenBuilder
 import random
 import time
 import json
-from .models import RoomMember
+#from .models import RoomMember,
+from .models import RoomMember #Message 
 from django.views.decorators.csrf import csrf_exempt
 
 from django.urls import reverse_lazy
@@ -89,13 +91,22 @@ def getToken(request):
 # View to render the lobby page.
 def lobby(request):
     return render(request, 'base/lobby.html')
+#def home(request):
+#    return render(request, 'home.html') notrequired
 
 
 # Ensure that the user is logged in before accessing the decorated view
 @login_required(login_url='/login/')
 # View to render the room page.
+#def room(request,room ): 
 def room(request):
-    return render(request, 'base/room.html')
+    username = request.GET.get('username')
+    room_details = RoomMember.objects.get(name=room)#changes
+    return render(request, 'base/room.html', {
+        'username': username,
+        'room': room,
+        'room_details': room_details
+    })
 
 
 # Ensure that the user is logged in before accessing the decorated view
@@ -152,3 +163,18 @@ def deleteMember(request):
     
     # Return a confirmation message as a JSON response.
     return JsonResponse('Member was deleted', safe=False)
+
+'''def send(request):
+    message = request.POST['message']
+    username = request.POST['username']
+    room = request.POST['room']
+
+    new_message = Message.objects.create(value=message, user=username, room=room)
+    new_message.save()
+    return HttpResponse('Message sent successfully')
+
+def getMessages(request, room):
+    room_details = RoomMember.objects.get(name=room)
+
+    messages = Message.objects.filter(room=room_details.id)
+    return JsonResponse({"messages":list(messages.values())})'''

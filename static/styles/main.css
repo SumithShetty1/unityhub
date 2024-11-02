@@ -201,6 +201,8 @@ body::before {
     min-height: 100vh;
     margin: 0;
     overflow: hidden;
+    display: flex;
+    justify-content: space-between;
 }
 
 .room-container::before {
@@ -226,7 +228,7 @@ body::before {
     display: flex;
     flex-wrap: wrap;
     height: 85vh;
-    width: 95%;
+    width: 65%; /* Adjust width to make space for chat container */
     margin: 0 auto;
 }
 
@@ -271,7 +273,6 @@ body::before {
     }
 }
 
-
 /* ----------------- Room Styling | Controls ------------------*/
 
 #controls-wrapper {
@@ -286,14 +287,60 @@ body::before {
 .control-icon {
     height: 20px;
     width: 20px;
-    box-shadow: var(--shaddow);
+    box-shadow: var(--shadow);
     background-color: #fff;
     cursor: pointer;
     padding: 10px;
     border-radius: 5px;
-
 }
 
 #leave-btn {
     background-color: rgb(255, 80, 80, 1);
 }
+
+/* ----------------- Chat Container Styling ------------------ */
+
+#chat-container {
+    width: 300px;
+    max-height: 85vh;
+    border: 2px solid #000000;
+    background-color: #f1f1f1;
+    border-radius: 5px;
+    padding: 10px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    margin-right: 20px;
+}
+
+#chat-display {
+    flex-grow: 1;
+    margin-bottom: 10px;
+}
+
+#chat-form {
+    display: flex;
+}
+
+#message-input {
+    flex-grow: 1;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px 0 0 4px;
+}
+
+#chat-form button {
+    padding: 8px 12px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 0 4px 4px 0;
+    cursor: pointer;
+}
+
+#chat-form button:hover {
+    background-color: #45a049;
+}
+
+
